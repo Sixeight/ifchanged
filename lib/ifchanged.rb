@@ -33,9 +33,12 @@ module IfChanged
 
       Observer.add_hook do |files|
         files.each do |file|
-          run_script = script.gsub('%', file)
-          puts "!#{run_script}"
-          system *run_script.split(/\s+/)
+          run_scripts = script.gsub('%', file)
+          run_scripts.split(';').each do |run_script|
+            run_script = run_script.strip
+            puts "!#{run_script}"
+            system *run_script.split(/¥s+/)
+          end
         end
       end
 
